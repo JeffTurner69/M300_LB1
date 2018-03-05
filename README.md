@@ -32,7 +32,7 @@ sudo apt-get -y install isc-dhcp-server
 
 ***DHCP Server Konfiguration***
 
-Als nächstes wird das DHCP Server Configfile angepasst, dabei werden folgende Attribute verändertd:
+Als nächstes wird das DHCP Server Configfile angepasst, dabei werden folgende Attribute verändert:
 * DNS
 ```
 sudo sed -i 's/example.org/labor.local/g' /etc/dhcp/dhcpd.conf
