@@ -1,6 +1,6 @@
 # M300_LB1 - DHCP Server
 
-***Voraussetzungen
+***Voraussetzungen***
 
 Diese Vagrant Konfiguration wurde mit folgender lokaler Konfiguration getestet:
 * Vagrant
@@ -8,7 +8,7 @@ Diese Vagrant Konfiguration wurde mit folgender lokaler Konfiguration getestet:
 * GitBash
 
 
-***Virtual Box - VM Konfiguration
+***Virtual Box - VM Konfiguration***
 
 Als Betriebssystem für den DHCP Server wird Debian verwendet. In den ersten Zeilen des Vagrantfiles
 können einige Einstellungen vorgenommen werden:
@@ -30,12 +30,26 @@ sudo apt-get -y install isc-dhcp-server
 ```
 
 
-***DHCP Server Konfiguration
-
-
-
-
-
+***DHCP Server Konfiguration***
+Als nächstes wird das DHCP Server Configfile angepasst, dabei werden folgende Attribute verändertd:
+*DNS
+```
+sudo sed -i 's/example.org/labor.local/g' /etc/dhcp/dhcpd.conf
+```
+*Domainname
+```
+sudo sed -i 's/ns2.labor.local/8.8.8.8/g' /etc/dhcp/dhcpd.conf
+```
+*DHCP Scope
+```
+sudo sed -i 's/example.org/labor.local/g' /etc/dhcp/dhcpd.conf
+sudo sed -i 's/ns2.labor.local/8.8.8.8/g' /etc/dhcp/dhcpd.conf
+sudo sed -i 's/#authoritative/authoritative/g' /etc/dhcp/dhcpd.conf
+sudo sed -i '$asubnet 192.168.50.0 netmask 255.255.255.0 {' /etc/dhcp/dhcpd.conf
+sudo sed -i '$arange 192.168.50.50 192.168.50.80;' /etc/dhcp/dhcpd.conf
+sudo sed -i '$aoption routers 192.168.50.1;' /etc/dhcp/dhcpd.conf
+sudo sed -i '$a}' /etc/dhcp/dhcpd.conf
+```
 
 Nach der Konfiguration wird der DHCP Service neu gestartet.
 ```
