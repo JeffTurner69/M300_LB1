@@ -31,6 +31,7 @@ sudo apt-get -y install isc-dhcp-server
 
 
 ***DHCP Server Konfiguration***
+
 Als nächstes wird das DHCP Server Configfile angepasst, dabei werden folgende Attribute verändertd:
 *DNS
 ```
